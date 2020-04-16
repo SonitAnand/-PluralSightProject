@@ -1,15 +1,10 @@
-node{
-   stage('SCM Checkout'){
-     git 'https://github.com/SonitAnand/-PluralSightProject.git'
-   }
-   stage('Compile-Package'){  
-      sh 'mvn clean package'
-   }
-   
-   stage('SonarQube Analysis') {
-        withSonarQubeEnv('Sonar Quality Check') { 
+node {
+  stage('SCM') {
+    git 'https://github.com/SonitAnand/-PluralSightProject.git'
+  }
+  stage('SonarQube analysis') {
+    withSonarQubeEnv('Sonar Quality Check') { 
           sh 'mvn clean package sonar:sonar'
         }
-    }
-
+  }
 }

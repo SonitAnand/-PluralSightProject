@@ -9,7 +9,7 @@ node{
    }
    
    stage('SonarQube Analysis') {
-        def mvnHome =  tool name: 'maven-3', type: 'maven'
+        def mvnHome =  tool name: 'apache-maven-3.6.2', type: 'maven'
         withSonarQubeEnv('Sonar Quality Check') { 
           sh "${mvnHome}/bin/mvn sonar:sonar"
         }
@@ -19,14 +19,6 @@ node{
       mail bcc: '', body: '''Hi Welcome to jenkins email alerts
       Thanks
       Sonit''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'sonitanand@gmail.com'
-   }
-   stage('Slack Notification'){
-       slackSend baseUrl: 'https://hooks.slack.com/services/',
-       channel: '#jenkins-pipeline-demo',
-       color: 'good', 
-       message: 'Welcome to Jenkins, Slack!', 
-       teamDomain: 'javahomecloud',
-       tokenCredentialId: 'slack-demo'
    }
 
 }

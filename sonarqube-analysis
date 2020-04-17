@@ -3,8 +3,8 @@ node {
     git 'https://github.com/SonitAnand/-PluralSightProject.git'
   }
   stage('SonarQube analysis') {
-    withSonarQubeEnv('Sonar Quality Check') { 
-          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
-        }
+    withSonarQubeEnv('Sonar Quality Check') {
+      sh 'mvn clean package sonar:sonar'
+    } // submitted SonarQube taskId is automatically attached to the pipeline context
   }
 }

@@ -85,5 +85,11 @@
 		        </plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+	    <snapshotRepository>
+		    <id>nexus-snapshots</id>
+		    <url>http://localhost:8081/repository/Sample_Test/</url>
+	    </snapshotRepository>
+	</distributionManagement>
 
 </project>

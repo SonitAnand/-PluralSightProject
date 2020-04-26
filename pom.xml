@@ -88,9 +88,9 @@
 	</build>
 	<distributionManagement>
 	    <snapshotRepository>
-		    <id>Nexus Repository</id>
-		    <name>Internal Releases</name>
-		    <url>http://localhost:8081/repository/Sample_Test/</url>
+		    <id>snapshots</id>
+		    <name>Snapshots</name>
+		    <url>http://localhost:8081/repository/Snapshots/</url>
 	    </snapshotRepository>
 	</distributionManagement>
 

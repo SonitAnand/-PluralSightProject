@@ -8,5 +8,6 @@ public class ApplicationController {
     @RequestMapping(value = "/home")
     public String home(){
         return "Welcome Home";
+        return ""
     }
 }

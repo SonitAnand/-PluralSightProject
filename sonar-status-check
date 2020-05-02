@@ -1,24 +1,19 @@
-node {
-
-  stage('SCM') {
-    git 'https://github.com/SonitAnand/-PluralSightProject.git'
+  stage("build & SonarQube analysis") {
+   node {
+    withSonarQubeEnv('Sonar Quality Check') 
+    { 
+      sh 'mvn clean package sonar:sonar'
+    }
+   }
   }
-  
-  stage('SonarQube analysis') {
-    withSonarQubeEnv('Sonar Quality Check') { 
-          sh 'mvn clean package sonar:sonar'
-        }
-  }
-  
-  stage('Quality Gate Status Check') {
+  stage("Quality Gate Status Check")
+  {
     timeout(time: 1, unit: 'HOURS') 
     {
-      def qg = waitForQualityGate()
-      if (qg.status != 'OK') 
-      {
-        error "Pipeline aborted due to quality gate failure: ${qg.status}"
-      }
-    }
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') 
+              {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+     }
   }
-  
-}

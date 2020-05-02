@@ -7,7 +7,6 @@ node {
       sh 'mvn clean package sonar:sonar'
     } 
   }
-}
   
 stage("Quality Gate"){
   timeout(time: 1, unit: 'HOURS') { 
@@ -16,4 +15,5 @@ stage("Quality Gate"){
       error "Pipeline aborted due to quality gate failure: ${qg.status}"
     }
   }
+}
 }
